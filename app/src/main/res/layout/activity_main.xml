@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="item为单位滚动效果"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_light"
+        android:padding="10dp"
+        />
+
+    <com.kermitye.autoscrooldemo.AutoScrollRecyclerView
+        android:id="@+id/mRv"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="流形式滚动效果"
+        android:textColor="@android:color/holo_red_light"
+        android:gravity="center"
+        android:padding="10dp"
+        />
+
+    <com.kermitye.autoscrooldemo.AutoScrollRecyclerView
+        android:id="@+id/mRvTwo"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        />
+
+
+</LinearLayout>
