@@ -1,0 +1,2 @@
+# AutoScrollRecyclerView
+RecyclerView实现垂直自动无限滚动，类似于中奖信息，跑马灯
