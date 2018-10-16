@@ -8,12 +8,7 @@
 
 
 
-![item为单位进行滚动](http://pd8746ife.bkt.clouddn.com/autoscrollrecyclerview_demo.gif)
-
-
-
-![流形式进行滚动](http://pd8746ife.bkt.clouddn.com/autoscrollrecyclerview_demo1.gif)
-
+![效果图](http://pd8746ife.bkt.clouddn.com/autoscrollrecyclerview.gif)
 
 
 #### 实现无限滚动
