@@ -11,4 +11,11 @@ import android.util.AttributeSet
 class AutoScrollRecyclerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0)
     : RecyclerView(context, attrs, defStyle) {
     //暂未完善，请查看主程序MainActivity
+
+
+    fun getItemHeight(position: Int): Int {
+        var view = layoutManager.findViewByPosition(position)
+        return view.height
+    }
+
 }
