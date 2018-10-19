@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearSmoothScroller
 import android.support.v7.widget.RecyclerView
 import android.util.DisplayMetrics
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     var mAutoTask: Disposable? = null
+    lateinit var mSmoothScroll: LinearSmoothScroller
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,24 +28,22 @@ class MainActivity : AppCompatActivity() {
             data.add("测试数据$i")
         }
 
-        var layoutManager = object : LinearLayoutManager(this) {
-            override fun smoothScrollToPosition(recyclerView: RecyclerView?, state: RecyclerView.State?, position: Int) {
-                var linearSmoothScroller = object : LinearSmoothScroller(recyclerView?.context) {
-
-                    //返回滑动一个pixel需要多少毫秒
-                    override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics?): Float {
-//                        return super.calculateSpeedPerPixel(displayMetrics)
-                        return 3f / (displayMetrics?.density ?: 1f)
-                    }
-                }
-                linearSmoothScroller.setTargetPosition(position)
-                startSmoothScroll(linearSmoothScroller)
-            }
-        }
-
-        mRv.layoutManager = layoutManager
+        mRv.layoutManager = LinearLayoutManager(this)
         mRv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         mRv.adapter = MainAdatper(data)
+
+        //自定义LinearSmoothScroller，重写方法，滚动item至顶部，控制滚动速度
+        mSmoothScroll = object : LinearSmoothScroller(this) {
+            override fun getVerticalSnapPreference(): Int {
+                return LinearSmoothScroller.SNAP_TO_START
+            }
+
+            override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics?): Float {
+                // 移动一英寸需要花费3ms
+                return 3f / (displayMetrics?.density ?: 1f)
+            }
+
+        }
 
         mRvTwo.layoutManager = LinearLayoutManager(this)
         mRvTwo.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -67,8 +67,10 @@ class MainActivity : AppCompatActivity() {
         if (mAutoTask != null && (mAutoTask?.isDisposed ?: true))
             mAutoTask?.dispose()
 
-        mAutoTask = Observable.interval(1, 2, TimeUnit.SECONDS).subscribe {
-            mRv.smoothScrollToPosition((4 + it).toInt())
+        mAutoTask = Observable.interval(1, 2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
+            //定位到指定项如果该项可以置顶就将其置顶显示
+            mSmoothScroll.targetPosition = it.toInt()
+            (mRv.layoutManager as LinearLayoutManager).startSmoothScroll(mSmoothScroll)
         }
     }
 

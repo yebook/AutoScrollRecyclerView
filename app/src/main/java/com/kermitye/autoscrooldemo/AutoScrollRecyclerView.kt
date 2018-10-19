@@ -18,7 +18,7 @@ class AutoScrollRecyclerView(mContext: Context, attrs: AttributeSet?) : Recycler
     private var mAutoTask: Disposable? = null
 
     //禁止手动滑动
-    override fun onTouchEvent(e: MotionEvent): Boolean {
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         return true
     }
 
