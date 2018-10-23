@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startAuto() {
-        if (mAutoTask != null && (mAutoTask?.isDisposed ?: true))
+        if (mAutoTask != null && !(mAutoTask?.isDisposed ?: true))
             mAutoTask?.dispose()
 
         mAutoTask = Observable.interval(1, 2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
