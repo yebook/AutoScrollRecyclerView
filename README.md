@@ -11,7 +11,7 @@
 
 
 
-![效果图](http://pd8746ife.bkt.clouddn.com/autoscrollrecyclerview.gif)
+![效果图](https://github.com/yebook/AutoScrollRecyclerView/blob/master/autoscrollrecyclerview.gif)
 
 
 #### 实现无限滚动
