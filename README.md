@@ -1,6 +1,6 @@
 ## RecyclerView实现垂直自动无限滚动，类似于中奖信息，跑马灯
 
-[java版源码](https://download.csdn.net/download/ye1016649801/10739631)
+[java版源码](https://github.com/yebook/AutoScrollRecyclerView/blob/master/AutoScrollQua(JAVA%E7%89%88).zip)
 
 
 > 实现RecyclerView中的效果有两种：
