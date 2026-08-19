@@ -1,3 +1,5 @@
+
+
 ## RecyclerView实现垂直自动无限滚动，类似于中奖信息，跑马灯
 
 [java版源码](https://github.com/yebook/AutoScrollRecyclerView/blob/master/AutoScrollQua(JAVA%E7%89%88).zip)
@@ -16,7 +18,7 @@
 
 #### 实现无限滚动
 
-> 这里实现无限滚动的方式为在adpater中设置itemCount为 Integer.MAX_VALUE
+> 这里实现无限滚动的方式为在adapter中设置itemCount为 Integer.MAX_VALUE
 >
 > 注意：此处基于BaseQuickAdapter的库进行的，也可直接使用原生
 
@@ -49,8 +51,6 @@ class MainAdatper(data: List<String>) : BaseQuickAdapter<String, BaseViewHolder>
 
 }
 ```
-
-
 
 
 
